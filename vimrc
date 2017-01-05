@@ -78,6 +78,8 @@ set ruler
 "set cursorline
 set foldmethod=indent
 set foldlevel=99
+set colorcolumn=81
+highlight ColorColumn ctermbg=black 
 
 colorscheme lucario
 "kcolorscheme minimalist
@@ -91,7 +93,7 @@ endif
 set t_Co=256
 set laststatus=2
 nnoremap <C-n> :bn<CR>
-nnoremap <C-s-n> :bp<CR>
+nnoremap <C-b> :bp<CR>
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1 
 let g:airline#extensions#tabline#buffer_nr_show = 1 
@@ -112,4 +114,6 @@ let g:airline_symbols.readonly = '⭤'
 "NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 nmap <c-l> :NERDTreeToggle<cr>
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="-"
 "End NERDTree
