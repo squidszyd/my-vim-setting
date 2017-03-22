@@ -12,6 +12,7 @@ call vundle#begin()
 	" Add plugins here before call vundle#end()
 	Plugin 'vim-airline/vim-airline'
 	Plugin 'vim-airline/vim-airline-themes'
+	Plugin 'davidhalter/jedi-vim'
 	Plugin 'scrooloose/nerdtree'
 	Plugin 'dikiaap/minimalist'
 	Plugin 'raphamorim/lucario'
@@ -79,7 +80,7 @@ set ruler
 set foldmethod=indent
 set foldlevel=99
 set colorcolumn=81
-highlight ColorColumn ctermbg=black 
+highlight ColorColumn ctermbg=33 
 
 colorscheme lucario
 "kcolorscheme minimalist
