@@ -12,6 +12,8 @@ call vundle#begin()
 	" Add plugins here before call vundle#end()
 	Plugin 'vim-airline/vim-airline'
 	Plugin 'vim-airline/vim-airline-themes'
+	Plugin 'Chiel92/vim-autoformat'
+	Plugin 'octol/vim-cpp-enhanced-highlight'
 	Plugin 'davidhalter/jedi-vim'
 	Plugin 'scrooloose/nerdtree'
 	Plugin 'dikiaap/minimalist'
@@ -82,8 +84,10 @@ set foldlevel=99
 set colorcolumn=81
 highlight ColorColumn ctermbg=33 
 
-colorscheme lucario
+set background=dark
+colorscheme hybrid_material
 "kcolorscheme minimalist
+let g:enable_bold_font = 1
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -98,7 +102,7 @@ nnoremap <C-b> :bp<CR>
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1 
 let g:airline#extensions#tabline#buffer_nr_show = 1 
-let g:airline_theme='luna'
+let g:airline_theme='hybrid'
 let g:airline#extensions#whitespace#enabled = 0 
 let g:airline#extensions#whitespace#symbol = '!' 
 if !exists('g:airline_symbols')
@@ -118,3 +122,12 @@ nmap <c-l> :NERDTreeToggle<cr>
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="-"
 "End NERDTree
+
+"cpp-enhanced-highlight
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
+"End cpp-enhanced-highlight
+
+set complete-=i
+set complete+=k
