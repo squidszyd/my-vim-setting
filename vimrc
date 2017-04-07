@@ -82,6 +82,7 @@ set ruler
 set foldmethod=indent
 set foldlevel=99
 set colorcolumn=81
+set cursorline
 highlight ColorColumn ctermbg=33 
 
 set background=dark
