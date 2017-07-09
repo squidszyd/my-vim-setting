@@ -14,13 +14,14 @@ call vundle#begin()
 	Plugin 'vim-airline/vim-airline-themes'
 	Plugin 'Chiel92/vim-autoformat'
 	Plugin 'octol/vim-cpp-enhanced-highlight'
-	Plugin 'davidhalter/jedi-vim'
+    Plugin 'chiphogg/vim-prototxt'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'rhysd/vim-color-spring-night'
+	" Plugin 'davidhalter/jedi-vim'
 	Plugin 'scrooloose/nerdtree'
 	Plugin 'dikiaap/minimalist'
 	Plugin 'raphamorim/lucario'
 	Plugin 'jacoborus/tender'
-	Plugin 'encody/nvim'
-	Plugin 'kristijanhusak/vim-hybrid-material'
 call vundle#end()
 filetype plugin indent on
 " End setting
@@ -75,6 +76,7 @@ set autoindent
 set softtabstop=4
 set tabstop=4
 set shiftwidth=4
+set expandtab
 set hlsearch
 set wrap
 set ruler
@@ -86,8 +88,8 @@ set cursorline
 highlight ColorColumn ctermbg=33 
 
 set background=dark
-colorscheme hybrid_material
-"kcolorscheme minimalist
+" colorscheme hybrid_material
+colorscheme minimalist
 let g:enable_bold_font = 1
 
 " Source a global configuration file if available
@@ -98,8 +100,10 @@ endif
 "Airline
 set t_Co=256
 set laststatus=2
-nnoremap <C-n> :bn<CR>
-nnoremap <C-b> :bp<CR>
+
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
+
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1 
 let g:airline#extensions#tabline#buffer_nr_show = 1 
@@ -124,11 +128,28 @@ let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="-"
 "End NERDTree
 
+set backspace=indent,eol,start
+
 "cpp-enhanced-highlight
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
 "End cpp-enhanced-highlight
 
-set complete-=i
-set complete+=k
+" YCM completer
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_server_python_interpreter='/usr/bin/python2.7'
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_complete_in_comment = 1
+let g:ycm_auto_trigger = 1
+let g:ycm_min_num_of_chars_for_completeion = 2
+nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+
+" Vim fomatter
+let g:formatterpath = ['~/llvm_clang/bin', ]
+noremap <F3> :Autoformat<CR>
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:formatter_yapf_style = 'pep8'
