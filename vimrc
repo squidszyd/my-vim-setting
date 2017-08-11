@@ -11,17 +11,15 @@ call vundle#begin()
 	Plugin 'VundleVim/Vundle.vim'
 	" Add plugins here before call vundle#end()
 	Plugin 'vim-airline/vim-airline'
+    Plugin 'hdima/python-syntax'
 	Plugin 'vim-airline/vim-airline-themes'
 	Plugin 'Chiel92/vim-autoformat'
 	Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'chiphogg/vim-prototxt'
     Plugin 'Valloric/YouCompleteMe'
-    Plugin 'rhysd/vim-color-spring-night'
 	" Plugin 'davidhalter/jedi-vim'
 	Plugin 'scrooloose/nerdtree'
 	Plugin 'dikiaap/minimalist'
-	Plugin 'raphamorim/lucario'
-	Plugin 'jacoborus/tender'
 call vundle#end()
 filetype plugin indent on
 " End setting
@@ -143,7 +141,13 @@ let g:ycm_server_python_interpreter='/usr/bin/python2.7'
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_complete_in_comment = 1
 let g:ycm_auto_trigger = 1
-let g:ycm_min_num_of_chars_for_completeion = 2
+let g:ycm_min_num_of_chars_for_completeion = 1
+let g:ycm_key_invoke_completion = '<C-n>'
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_echo_current_diagnostic = 0
+let g:ycm_always_populate_location_list = 0
 nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 
@@ -153,3 +157,7 @@ noremap <F3> :Autoformat<CR>
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:formatter_yapf_style = 'pep8'
+" let g:autoformat_verbosemode=1
+
+" Python-syntax
+let python_highlight_all = 1
