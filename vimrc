@@ -17,9 +17,19 @@ call vundle#begin()
 	Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'chiphogg/vim-prototxt'
     Plugin 'Valloric/YouCompleteMe'
-	" Plugin 'davidhalter/jedi-vim'
 	Plugin 'scrooloose/nerdtree'
 	Plugin 'dikiaap/minimalist'
+    Plugin 'nightsense/simplifysimplify'
+    Plugin 'nightsense/office'
+    Plugin 'nightsense/carbonized'
+    Plugin 'hzchirs/vim-material'
+    Plugin 'tpope/vim-surround'
+    Plugin 'Yggdroot/indentLine'
+    Plugin 'airblade/vim-gitgutter'
+    Plugin 'davidklsn/vim-sialoquent'
+    Plugin 'nightsense/vrunchbang'
+    Plugin 'nightsense/vim-crunchbang'
+    Plugin 'danilo-augusto/vim-afterglow'
 call vundle#end()
 filetype plugin indent on
 " End setting
@@ -44,7 +54,7 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-"set background=dark
+" set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -78,45 +88,53 @@ set expandtab
 set hlsearch
 set wrap
 set ruler
-"set cursorline
+set laststatus=2
 set foldmethod=indent
-set foldlevel=99
+set foldlevel=91
 set colorcolumn=81
 set cursorline
-highlight ColorColumn ctermbg=33 
+set tw=80
 
-set background=dark
-" colorscheme hybrid_material
-colorscheme minimalist
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
+nnoremap * *``
+noremap <F2> :nohl<CR>
+
+highlight ColorColumn ctermbg=33
+
 let g:enable_bold_font = 1
+highlight Comment cterm=italic
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
+
 "Airline
-set t_Co=256
-set laststatus=2
-
-map <C-J> :bnext<CR>
-map <C-K> :bprev<CR>
-
 let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled = 1 
-let g:airline#extensions#tabline#buffer_nr_show = 1 
-let g:airline_theme='hybrid'
-let g:airline#extensions#whitespace#enabled = 0 
-let g:airline#extensions#whitespace#symbol = '!' 
+" let g:airline_theme='hybrid'
+let g:airline_theme='bubblegum'
+" let g:airline_theme='material'
+" let g:airline#extensions#whitespace#enabled = 0
+" let g:airline#extensions#whitespace#symbol = '!'
+let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_left_sep = '⮀' 
-let g:airline_left_alt_sep = '⮁' 
-let g:airline_right_sep = '⮂' 
-let g:airline_right_alt_sep = '⮃' 
-let g:airline_symbols.branch = '⭠' 
-let g:airline_symbols.readonly = '⭤' 
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline#extensions#default#layout =[
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'x', 'z', 'error']
+    \ ]
 "End Airline
 
 "NERDTree
@@ -124,6 +142,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeT
 nmap <c-l> :NERDTreeToggle<cr>
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="-"
+let g:NERDTreeWinSize = 30
 "End NERDTree
 
 set backspace=indent,eol,start
@@ -134,10 +153,16 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
 "End cpp-enhanced-highlight
 
+" indent line
+" let g:indentLine_setColors = 0
+let g:indentLine_char = '⋮'
+" let g:indentLine_bgcolor_term = 233
+
 " YCM completer
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_server_python_interpreter='/usr/bin/python2.7'
+"let g:ycm_python_binary_path='/usr/bin/python2.7'
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_complete_in_comment = 1
 let g:ycm_auto_trigger = 1
@@ -148,12 +173,14 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_echo_current_diagnostic = 0
 let g:ycm_always_populate_location_list = 0
+let g:ycm_log_level = 'debug'
 nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+"autocmd BufEnter * if &filetype == "" | setlocal ft=cpp | endif
 
 " Vim fomatter
-let g:formatterpath = ['~/llvm_clang/bin', ]
 noremap <F3> :Autoformat<CR>
+let g:formatterpath = ['/data00/home/zhuyandong/llvm/bin', '/data00/home/zhuyandong/.local/bin/js-beautify']
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:formatter_yapf_style = 'pep8'
@@ -161,3 +188,23 @@ let g:formatter_yapf_style = 'pep8'
 
 " Python-syntax
 let python_highlight_all = 1
+
+" Gitgutter
+let g:gitgutter_realtime = 1
+let g:gitgutter_sign_modified = '•'
+let g:gitgutter_sign_added = '❖'
+" highlight GitGutterAdd guifg = '#A3E28B'
+
+" colorscheme minimalist
+" colorscheme office-light
+" colorscheme carbonized-light
+" colorscheme vim-material
+" colorscheme angr
+" colorscheme sialoquent
+colorscheme afterglow
+" colorscheme vrunchbang-dark
+" colorscheme crunchbang
+
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
