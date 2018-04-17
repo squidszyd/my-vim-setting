@@ -19,17 +19,13 @@ call vundle#begin()
     Plugin 'Valloric/YouCompleteMe'
 	Plugin 'scrooloose/nerdtree'
 	Plugin 'dikiaap/minimalist'
-    Plugin 'nightsense/simplifysimplify'
-    Plugin 'nightsense/office'
-    Plugin 'nightsense/carbonized'
     Plugin 'hzchirs/vim-material'
     Plugin 'tpope/vim-surround'
     Plugin 'Yggdroot/indentLine'
     Plugin 'airblade/vim-gitgutter'
-    Plugin 'davidklsn/vim-sialoquent'
-    Plugin 'nightsense/vrunchbang'
-    Plugin 'nightsense/vim-crunchbang'
     Plugin 'danilo-augusto/vim-afterglow'
+    Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'tacahiroy/ctrlp-funky'
 call vundle#end()
 filetype plugin indent on
 " End setting
@@ -70,14 +66,14 @@ endif
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-"set showcmd		" Show (partial) command in status line.
+set showcmd		    " Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
 set smartcase		" Do smart case matching
 set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
-"set hidden		" Hide buffers when they are abandoned
-"set mouse=a		" Enable mouse usage (all modes)
+set autowrite		" Automatically save before commands like :next and :make
+"set hidden		    " Hide buffers when they are abandoned
+set mouse=a		    " Enable mouse usage (all modes)
 set number
 set cindent
 set autoindent
@@ -94,9 +90,11 @@ set foldlevel=91
 set colorcolumn=81
 set cursorline
 set tw=80
+set fo=cq
+set wm=0
 
-map <C-J> :bnext<CR>
-map <C-K> :bprev<CR>
+map <C-j> :bnext<CR>
+map <C-k> :bprev<CR>
 nnoremap * *``
 noremap <F2> :nohl<CR>
 
@@ -114,8 +112,10 @@ endif
 "Airline
 let g:airline_powerline_fonts=1
 " let g:airline_theme='hybrid'
-let g:airline_theme='bubblegum'
+" let g:airline_theme='luna'
+" let g:airline_theme='papercolor'
 " let g:airline_theme='material'
+let g:airline_theme='minimalist'
 " let g:airline#extensions#whitespace#enabled = 0
 " let g:airline#extensions#whitespace#symbol = '!'
 let g:airline#extensions#tabline#enabled = 1
@@ -133,7 +133,7 @@ let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
 let g:airline#extensions#default#layout =[
     \ [ 'a', 'b', 'c' ],
-    \ [ 'x', 'z', 'error']
+    \ [ 'x', 'z', 'error', 'warning']
     \ ]
 "End Airline
 
@@ -142,7 +142,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeT
 nmap <c-l> :NERDTreeToggle<cr>
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="-"
-let g:NERDTreeWinSize = 30
+let g:NERDTreeWinSize = 40
 "End NERDTree
 
 set backspace=indent,eol,start
@@ -191,20 +191,21 @@ let python_highlight_all = 1
 
 " Gitgutter
 let g:gitgutter_realtime = 1
-let g:gitgutter_sign_modified = '•'
-let g:gitgutter_sign_added = '❖'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_added = '+'
 " highlight GitGutterAdd guifg = '#A3E28B'
 
+" CtrlP-Funcky
+nnoremap <Leader>fu :CtrlPFuncky<Cr>
+nnoremap <Leader>fU :execute 'CtrlPFuncky ' . expand('<cword>')<Cr>
+let g:ctrlp_funcky_syntax_highlight = 1
+let g:ctrlp_extensions = ['funky']
+
 " colorscheme minimalist
-" colorscheme office-light
-" colorscheme carbonized-light
 " colorscheme vim-material
-" colorscheme angr
-" colorscheme sialoquent
 colorscheme afterglow
-" colorscheme vrunchbang-dark
-" colorscheme crunchbang
 
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
+set encoding=utf-8
