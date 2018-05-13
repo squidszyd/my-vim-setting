@@ -26,6 +26,9 @@ call vundle#begin()
     Plugin 'danilo-augusto/vim-afterglow'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'tacahiroy/ctrlp-funky'
+    Plugin 'felipesousa/rupza'
+    Plugin 'nightsense/seagrey'
+    Plugin 'aradunovic/perun.vim'
 call vundle#end()
 filetype plugin indent on
 " End setting
@@ -93,6 +96,8 @@ set tw=80
 set fo=cq
 set wm=0
 
+let mapleader=','
+
 map <C-j> :bnext<CR>
 map <C-k> :bprev<CR>
 nnoremap * *``
@@ -111,30 +116,31 @@ endif
 
 "Airline
 let g:airline_powerline_fonts=1
+let g:airline_theme='papercolor'
 " let g:airline_theme='hybrid'
 " let g:airline_theme='luna'
-" let g:airline_theme='papercolor'
+" let g:airline_theme='wombat'
 " let g:airline_theme='material'
-let g:airline_theme='minimalist'
+" let g:airline_theme='minimalist'
 " let g:airline#extensions#whitespace#enabled = 0
 " let g:airline#extensions#whitespace#symbol = '!'
 let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+" let g:airline_left_sep = '▶'
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = '◀'
+" let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
-let g:airline#extensions#default#layout =[
-    \ [ 'a', 'b', 'c' ],
-    \ [ 'x', 'z', 'error', 'warning']
-    \ ]
+" let g:airline#extensions#default#layout =[
+"     \ [ 'a', 'b', 'c' ],
+"     \ [ 'x', 'z', 'error', 'warning']
+"     \ ]
 "End Airline
 
 "NERDTree
@@ -195,15 +201,17 @@ let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_added = '+'
 " highlight GitGutterAdd guifg = '#A3E28B'
 
-" CtrlP-Funcky
-nnoremap <Leader>fu :CtrlPFuncky<Cr>
-nnoremap <Leader>fU :execute 'CtrlPFuncky ' . expand('<cword>')<Cr>
-let g:ctrlp_funcky_syntax_highlight = 1
+" CtrlP & CtrlP-Funky
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_extensions = ['funky']
+let g:ctrlp_match_window = 'top,order:ttb,min:5,max:20,results:20'
 
 " colorscheme minimalist
 " colorscheme vim-material
-colorscheme afterglow
+" colorscheme afterglow
+colorscheme seagrey-light
 
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
