@@ -17,6 +17,7 @@ call vundle#begin()
 	Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'chiphogg/vim-prototxt'
     Plugin 'Valloric/YouCompleteMe'
+    Plugin 'jiangmiao/auto-pairs'
 	Plugin 'scrooloose/nerdtree'
 	Plugin 'dikiaap/minimalist'
     Plugin 'hzchirs/vim-material'
@@ -26,6 +27,12 @@ call vundle#begin()
     Plugin 'danilo-augusto/vim-afterglow'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'tacahiroy/ctrlp-funky'
+    Plugin 'felipesousa/rupza'
+    Plugin 'nightsense/seagrey'
+    Plugin 'aradunovic/perun.vim'
+    Plugin 'easysid/mod8.vim'
+    Plugin 'mhartington/oceanic-next'
+    Plugin 'kristijanhusak/vim-hybrid-material'
 call vundle#end()
 filetype plugin indent on
 " End setting
@@ -50,7 +57,7 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-" set background=dark
+set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -113,15 +120,16 @@ endif
 
 "Airline
 let g:airline_powerline_fonts=1
+" let g:airline_theme='papercolor'
 " let g:airline_theme='hybrid'
-" let g:airline_theme='luna'
-let g:airline_theme='wombat'
+let g:airline_theme='luna'
+" let g:airline_theme='wombat'
 " let g:airline_theme='material'
 " let g:airline_theme='minimalist'
 " let g:airline#extensions#whitespace#enabled = 0
 " let g:airline#extensions#whitespace#symbol = '!'
 let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -133,10 +141,10 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
-let g:airline#extensions#default#layout =[
-    \ [ 'a', 'b', 'c' ],
-    \ [ 'x', 'z', 'error', 'warning']
-    \ ]
+" let g:airline#extensions#default#layout =[
+"     \ [ 'a', 'b', 'c' ],
+"     \ [ 'x', 'z', 'error', 'warning']
+"     \ ]
 "End Airline
 
 "NERDTree
@@ -164,7 +172,7 @@ let g:indentLine_char = '⋮'
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_server_python_interpreter='/usr/bin/python2.7'
-"let g:ycm_python_binary_path='/usr/bin/python2.7'
+let g:ycm_python_binary_path='/usr/bin/python2.7'
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_complete_in_comment = 1
 let g:ycm_auto_trigger = 1
@@ -197,15 +205,25 @@ let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_added = '+'
 " highlight GitGutterAdd guifg = '#A3E28B'
 
-" CtrlP-Funky
+" CtrlP & CtrlP-Funky
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_extensions = ['funky']
+let g:ctrlp_match_window = 'top,order:ttb,min:5,max:20,results:20'
 
 " colorscheme minimalist
 " colorscheme vim-material
-colorscheme afterglow
+" colorscheme afterglow
+" colorscheme seagrey-light
+colorscheme perun
+" colorscheme mod8
+" colorscheme OceanicNext
+" colorscheme anderson
+" colorscheme hybrid_material
+
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
 
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
