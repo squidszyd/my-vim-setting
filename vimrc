@@ -10,25 +10,30 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 	Plugin 'VundleVim/Vundle.vim'
 	" Add plugins here before call vundle#end()
-	Plugin 'vim-airline/vim-airline'
-    Plugin 'hdima/python-syntax'
-	Plugin 'vim-airline/vim-airline-themes'
 	Plugin 'Chiel92/vim-autoformat'
 	Plugin 'octol/vim-cpp-enhanced-highlight'
-    Plugin 'chiphogg/vim-prototxt'
-    Plugin 'Valloric/YouCompleteMe'
 	Plugin 'scrooloose/nerdtree'
-	Plugin 'dikiaap/minimalist'
-    Plugin 'hzchirs/vim-material'
-    Plugin 'tpope/vim-surround'
+	Plugin 'vim-airline/vim-airline'
+	Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'Valloric/YouCompleteMe'
     Plugin 'Yggdroot/indentLine'
     Plugin 'airblade/vim-gitgutter'
-    Plugin 'danilo-augusto/vim-afterglow'
+    Plugin 'auto-pairs-gentle'
+    Plugin 'chiphogg/vim-prototxt'
     Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'hdima/python-syntax'
     Plugin 'tacahiroy/ctrlp-funky'
-    Plugin 'felipesousa/rupza'
-    Plugin 'nightsense/seagrey'
+    Plugin 'tpope/vim-repeat'
+    Plugin 'tpope/vim-surround'
+    " Themes
+	Plugin 'dikiaap/minimalist'
     Plugin 'aradunovic/perun.vim'
+    Plugin 'danilo-augusto/vim-afterglow'
+    Plugin 'hzchirs/vim-material'
+    Plugin 'kadekillary/subtle_solo'
+    Plugin 'kristijanhusak/vim-hybrid-material'
+    Plugin 'nightsense/seagrey'
+    Plugin 'tyrannicaltoucan/vim-quantum'
 call vundle#end()
 filetype plugin indent on
 " End setting
@@ -53,7 +58,7 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-" set background=dark
+set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -89,8 +94,8 @@ set wrap
 set ruler
 set laststatus=2
 set foldmethod=indent
-set foldlevel=91
 set colorcolumn=81
+set foldlevel=81
 set cursorline
 set tw=80
 set fo=cq
@@ -116,9 +121,9 @@ endif
 
 "Airline
 let g:airline_powerline_fonts=1
-let g:airline_theme='papercolor'
+" let g:airline_theme='papercolor'
 " let g:airline_theme='hybrid'
-" let g:airline_theme='luna'
+let g:airline_theme='luna'
 " let g:airline_theme='wombat'
 " let g:airline_theme='material'
 " let g:airline_theme='minimalist'
@@ -186,7 +191,7 @@ nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 
 " Vim fomatter
 noremap <F3> :Autoformat<CR>
-let g:formatterpath = ['/data00/home/zhuyandong/llvm/bin', '/data00/home/zhuyandong/.local/bin/js-beautify']
+let g:formatterpath = ['/data01/home/zhuyandong/llvm_clang/bin', '/data00/home/zhuyandong/.local/bin/js-beautify']
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:formatter_yapf_style = 'pep8'
@@ -211,7 +216,10 @@ let g:ctrlp_match_window = 'top,order:ttb,min:5,max:20,results:20'
 " colorscheme minimalist
 " colorscheme vim-material
 " colorscheme afterglow
-colorscheme seagrey-light
+" colorscheme seagrey-light
+" colorscheme perun
+" colorscheme quantum
+colorscheme hybrid_material
 
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
